@@ -1,0 +1,60 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`my-el`
+
+
+@demo demo/index.html
+-->
+
+<dom-module id="my-el">
+  <template>
+    <style>
+      :host {
+        display: block;
+        background: red;
+        padding: 5em;
+        color: white;
+      }
+      :host[active] {
+        background: blue;
+      }
+
+    </style>
+    <h2>Hello [[fname]] [[lname]]!</h2>
+    [[active]]
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'my-el',
+
+      properties: {
+        prop1: {
+          type: String,
+          value: 'my-el',
+        },
+        fname: {
+          type: String,
+          reflectToAttribute: true,
+        },
+        lname: {
+          type: String,
+        },
+        active: {
+          type: Boolean,
+          value: false,
+          reflectToAttribute: true,
+        }
+      },
+      ready: function(){
+        var root = this;
+        document.addEventListener("click", function(e){
+          console.log(e);
+          root.active = !root.active;
+        });
+      }
+    });
+  </script>
+</dom-module>
